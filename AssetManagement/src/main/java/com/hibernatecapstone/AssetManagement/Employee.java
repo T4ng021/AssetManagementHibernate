@@ -38,12 +38,14 @@ public class Employee {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getAssetId() {
-		return assetId;
+	public Assets getAsset() {
+		return asset;
 	}
-	public void setAssetId(int assetId) {
-		this.assetId = assetId;
+	public void setAsset(Assets asset) {
+		this.asset = asset;
 	}
+	
+	
 	
 	
 }

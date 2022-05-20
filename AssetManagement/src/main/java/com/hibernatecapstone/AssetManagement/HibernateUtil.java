@@ -1,9 +1,9 @@
 package com.hibernatecapstone.AssetManagement;
 
+
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
+
 
 public class HibernateUtil {
 
@@ -11,13 +11,16 @@ public class HibernateUtil {
 	
 	static {
 		
-		Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
-		
-		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-				.applySettings(cfg.getProperties()).build();
-		
-		sessionFactory = cfg.buildSessionFactory(serviceRegistry);
-	}
+			try{
+			
+					Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
+					
+					sessionFactory = cfg.buildSessionFactory();
+				}
+				catch(Throwable ex) {
+					throw new ExceptionInInitializerError(ex);
+				}
+		}
 	
 	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
