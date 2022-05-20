@@ -1,5 +1,6 @@
 package com.hibernatecapstone.AssetManagement;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -9,11 +10,17 @@ import jakarta.persistence.Table;
 public class Assets {
 
 	@Id
+	@Column(name="asset_id")
 	private int assetId;
+	@Column(name="serial_no")
 	private int serialNo;
+	@Column(name="pr_no")
 	private int prNo;
+	@Column(name="asset_type")
 	private String assetType;
+	@Column(name="asset_price")
 	private int assetPrice;
+	@Column(name="asset_location")
 	private String assetLocation;
 	 
 	public int getAssetId() {

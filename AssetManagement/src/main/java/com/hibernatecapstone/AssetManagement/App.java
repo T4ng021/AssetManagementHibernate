@@ -17,31 +17,41 @@ public class App
 {
     @SuppressWarnings("deprecation")
 	public static void main( String[] args )
-    {
-    	Assets ast = new Assets();
+    {  	
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml");
+        
+        /*StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().
+        									applySettings(cfg.getProperties()).
+        									build();*/
+        
+        SessionFactory factory = cfg.buildSessionFactory();
+        
+        Employee emp = new Employee();
     	
-    	ast.setAssetId(101);
+    	emp.setEmpId(102);
+    	emp.setEmpName("Raj");
+    	emp.setPassword("123#");
+    	emp.setAssetId(101);
+        
+        Assets ast = new Assets();
+    	
+    	ast.setAssetId(103);
     	ast.setSerialNo(20);
     	ast.setPrNo(10);
     	ast.setAssetType("General");
     	ast.setAssetPrice(100);
     	ast.setAssetLocation("Nashik");
-    	
-        Configuration cfg = new Configuration().configure().addAnnotatedClass(com.hibernatecapstone.AssetManagement.Assets.class);
-        
-        StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().
-        									applySettings(cfg.getProperties()).
-        									build();
-        
-        SessionFactory factory = cfg.buildSessionFactory(serviceRegistry);
         
         Session session = factory.openSession();
         
         Transaction tx = session.beginTransaction();
         
         session.save(ast);
+        session.save(emp);
         
         tx.commit();
+        session.close();
     }
 }
 
