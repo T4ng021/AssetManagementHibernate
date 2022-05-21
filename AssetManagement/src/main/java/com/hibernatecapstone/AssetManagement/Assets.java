@@ -1,5 +1,7 @@
 package com.hibernatecapstone.AssetManagement;
 
+import org.hibernate.annotations.NamedQuery;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -7,6 +9,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "assets")
+@NamedQuery(name = "Assets.getAvgPerLocation", 
+			query = "Select avg(assetPrice),assetLocation from Assets group by assetLocation ")
 public class Assets {
 
 	@Id
@@ -22,6 +26,15 @@ public class Assets {
 	private int assetPrice;
 	@Column(name="asset_location")
 	private String assetLocation;
+	
+	public Assets(int assetId,int serialNo,int prNo,String assetType,int assetPrice,String assetLocation) {
+		this.assetId = assetId;
+		this.serialNo = serialNo;
+		this.prNo = prNo;
+		this.assetType = assetType;
+		this.assetPrice = assetPrice;
+		this.assetLocation = assetLocation;
+	}
 	 
 	public int getAssetId() {
 		return assetId;

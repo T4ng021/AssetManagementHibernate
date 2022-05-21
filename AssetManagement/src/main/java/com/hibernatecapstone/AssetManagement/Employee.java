@@ -20,6 +20,13 @@ public class Employee {
 	@JoinColumn(name = "assertId", unique = true)
 	private Assets asset;
 	
+	public Employee( int empId,String empName,String password,Assets asset) {
+		this.empId = empId;
+		this.empName = empName;
+		this.password = password;
+		this.asset = asset;
+	}
+	
 	public String getEmpName() {
 		return empName;
 	}
